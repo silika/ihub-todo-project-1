@@ -2,16 +2,16 @@ fetch('/api/projects')
   .then((res) => res.json())
   .then(renderProjects);
 
-createProject({ name: 'My second project' })
-  .then(() => getProjectById(1))
-  .then(() => updateProjectById(1, { name: 'Changed project' }))
-  .then(() => removeProjectById(2))
-  .then(() => getAllTasksByProjectId(1))
-  .then(() => createTaskByProjectId(1, { name: 'My new task' }))
-  .then(() => getTaskByIdByProjectId(1, 1))
-  .then(() => updateTaskByIdByProjectId(1, 1, { done: true }))
-  .then(() => removeTaskByIdByProjectId(1, 1))
-  .catch((err) => console.log(err))
+//createProject({ name: 'My second project' })
+//  .then(() => getProjectById(1))
+//  .then(() => updateProjectById(1, { name: 'Changed project' }))
+//  .then(() => removeProjectById(2))
+//  .then(() => getAllTasksByProjectId(1))
+//  .then(() => createTaskByProjectId(1, { name: 'My new task' }))
+//  .then(() => getTaskByIdByProjectId(1, 1))
+//  .then(() => updateTaskByIdByProjectId(1, 1, { done: true }))
+//  .then(() => removeTaskByIdByProjectId(1, 1))
+//  .catch((err) => console.log(err))
 
 
 // Tasks
@@ -118,3 +118,8 @@ function renderProjects(projects) {
     app.appendChild(list);
   });
 }
+
+//Templatin
+ var headerTmpl = Handlebars.compile(document.getElementById('header').innerHTML);
+
+headerTmpl({projectName:"JS Course"});

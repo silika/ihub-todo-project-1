@@ -1,0 +1,17 @@
+html
+  head
+    title= title
+  body
+    #app
+    template#project
+      include templates/project.jade
+    template#bar
+      include templates/bar.jade
+    template#header
+      include templates/header.jade
+    template#list
+      include templates/list.jade
+    template#todo_item
+      include templates/todo_item.jade
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js")
+    script(src="/js/main.js")
