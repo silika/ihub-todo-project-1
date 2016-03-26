@@ -6,7 +6,63 @@ createProject({ name: 'My second project' })
   .then(() => getProjectById(1))
   .then(() => updateProjectById(1, { name: 'Changed project' }))
   .then(() => removeProjectById(2))
+  .then(() => getAllTasksByProjectId(1))
+  .then(() => createTaskByProjectId(1, { name: 'My new task' }))
+  .then(() => getTaskByIdByProjectId(1, 1))
+  .then(() => updateTaskByIdByProjectId(1, 1, { done: true }))
+  .then(() => removeTaskByIdByProjectId(1, 1))
   .catch((err) => console.log(err))
+
+
+// Tasks
+
+function getAllTasksByProjectId(id) {
+  return fetch('/api/projects/' + id + '/tasks')
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+}
+
+function createTaskByProjectId(id, task) {
+  return fetch('/api/projects/' + id + '/tasks', {
+    method: 'POST',
+    body: JSON.stringify(task),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+function getTaskByIdByProjectId(pid, id) {
+  return fetch('/api/projects/' + pid + '/tasks/' + id)
+    .then((res) => res.json())
+    .then((json) => console.log(json))
+}
+
+function updateTaskByIdByProjectId(pid, id, task) {
+  return fetch('/api/projects/' + pid + '/tasks/' + id, {
+    method: 'PUT',
+    body: JSON.stringify(task),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+}
+
+function removeTaskByIdByProjectId(pid, id) {
+  return fetch('/api/projects/' + pid + '/tasks/' + id, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then((res) => res.json())
+  .then((json) => console.log(json))
+}
+
+
+// Projects
 
 function createProject(project) {
   return fetch('/api/projects', {
